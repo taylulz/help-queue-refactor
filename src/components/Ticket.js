@@ -1,15 +1,18 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export default function Ticket() {
-  const name1 = "Person1";
-  const name2 = "Person2";
-
+export default function Ticket(props) {
   return (
     <>
-      <h3>3a?</h3>
-      <h3>{name1} & {name2}</h3>
-      <p><em>issue description</em></p>
+      <h3>{props.location} --- {props.names}</h3>
+      <p><em>{props.issue}</em></p>
       <hr/>
     </>
-  )
+  );
 }
+
+Ticket.propTypes = {
+  names: PropTypes.string,
+  location: PropTypes.string,
+  issue: PropTypes.string
+};
