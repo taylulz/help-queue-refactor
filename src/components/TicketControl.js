@@ -32,6 +32,7 @@ export default class TicketControl extends React.Component {
       <>
         {currentlyVisibleState}
         <button onClick={this.handleClick}>{buttonText}</button>
+      </>
     );
   }
 }
