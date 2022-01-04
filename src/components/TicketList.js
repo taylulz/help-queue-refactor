@@ -1,29 +1,12 @@
 import React from "react";
 import Ticket from './Ticket';
+import PropTypes from 'prop-types';
 
-const mainTicketList = [
-  {
-    names: "Person1 and Person2",
-    location: '3a',
-    issue: 'ticekt issue'
-  },
-  {
-    names: 'Person3 & Person4',
-    location: '4B',
-    issue: 'issue description 2'
-  },
-  {
-    names: 'Person5 & Person6',
-    location: '9G',
-    issue: 'issue desction 3'
-  }
-]
-
-export default function TicketList() {
+export default function TicketList(props) {
   return (
     <>
       <hr />
-      {mainTicketList.map((ticket, index) =>
+      {props.ticketList.map((ticket, index) =>
         <Ticket 
           names={ticket.names}
           location={ticket.location}
@@ -34,3 +17,7 @@ export default function TicketList() {
     </>
   );
 }
+
+TicketList.propTypes = {
+  ticketList: PropTypes.array
+};
