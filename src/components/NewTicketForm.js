@@ -28,7 +28,7 @@ export default function NewTicketForm(props) {
         <textarea
           name='issue'
           placeholder="Describe the issue" />
-        <button type='submit'>Help!</button>
+        <input type='submit' value='Halp!' />
       </form>
     </>
   );
