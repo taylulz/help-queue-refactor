@@ -2,6 +2,7 @@ import React from "react";
 import NewTicketForm from "./NewTicketForm";
 import TicketDetail from "./TicketDetail";
 import TicketList from "./TicketList";
+import EditTicketForm from './EditTicketForm';
 
 export default class TicketControl extends React.Component {
   constructor(props) {
@@ -9,7 +10,8 @@ export default class TicketControl extends React.Component {
     this.state = {
       formVisibleOnPage: false,
       mainTicketList: [],
-      selectedTicket: null
+      selectedTicket: null,
+      editing: false
     };
   }
 
@@ -48,18 +50,54 @@ export default class TicketControl extends React.Component {
     });
   }
 
+  handleEditClick = () => {
+    console.log("HandleEditClick Reached!");
+    if (this.state.selectedTicket != null) {
+      this.setState({
+        formVisibleOnPage: false,
+        selectedTicket: null,
+        editing: false
+      });
+    } else {
+      this.setState(prevState => ({
+        formVisibleOnPage: !prevState.formVisibleOnPage,
+      }));
+    }
+  }
+
+  handleEditingTicketInList = (ticketToEdit) => {
+    const editedMaintTicketList = this.state.mainTicketList
+      .filter(ticket => ticket.id !== this.state.selectedTicket.id)
+      .concat(ticketToEdit);
+    this.setState({
+      mainTicketList: editedMaintTicketList,
+      editing: false,
+      selectedTicket: null
+    });
+  }
+
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
 
-    if (this.state.selectedTicket != null) {
+
+    if (this.state.editing) {
+      currentlyVisibleState = 
+        <EditTicketForm
+          ticket={this.state.selectedTicket}
+          onEditTicket={this.handleEditingTicketInList}
+        />
+      buttonText="Return to TicketList";
+
+    } else if (this.state.selectedTicket != null) {
       currentlyVisibleState = 
         <TicketDetail 
           ticket={this.state.selectedTicket}
           onClickingDelete={this.handleDeletingTicket}
+          onClickingEdit={this.handleEditClick}
         />
 
-      buttonText = "Return To List";
+      buttonText="Return To List";
 
     } else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = 
