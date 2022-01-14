@@ -3,6 +3,7 @@ import NewTicketForm from "./NewTicketForm";
 import TicketDetail from "./TicketDetail";
 import TicketList from "./TicketList";
 import EditTicketForm from './EditTicketForm';
+import { connect } from 'react-redux';
 
 export default class TicketControl extends React.Component {
   constructor(props) {
@@ -123,3 +124,5 @@ export default class TicketControl extends React.Component {
     );
   }
 }
+
+TicketControl = connect()(TicketControl);

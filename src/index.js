@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './reducers/ticket-list-reducer';
+
+const store = createStore(reducer);
 
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
