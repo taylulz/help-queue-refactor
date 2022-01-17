@@ -7,6 +7,10 @@ import reducer from './reducers/ticket-list-reducer';
 
 const store = createStore(reducer);
 
+store.subscribe(() =>
+  console.log(store.getState(), "store.getState()")
+);
+
 
 ReactDOM.render(
   <Provider store={store}>
