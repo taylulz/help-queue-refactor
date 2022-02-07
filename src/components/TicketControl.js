@@ -10,7 +10,7 @@ export default class TicketControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formVisibleOnPage: false,
+      // formVisibleOnPage: false,
       selectedTicket: null,
       editing: false
     };
@@ -19,13 +19,13 @@ export default class TicketControl extends React.Component {
   handleClick = () => {
     if (this.state.selectedTicket != null) {
       this.setState({
-        formVisibleOnPage: false,
+        // formVisibleOnPage: false,
         selectedTicket: null
       });
     } else {
-      this.setState(prevState => ({
-        formVisibleOnPage: !prevState.formVisibleOnPage
-      }));
+      // this.setState(prevState => ({
+      //   formVisibleOnPage: !prevState.formVisibleOnPage
+      // }));
     }
   }
 
@@ -40,9 +40,9 @@ export default class TicketControl extends React.Component {
       issue
     }
     dispatch(action);
-    this.setState({
-      formVisibleOnPage: false 
-    });
+    // this.setState({
+    //   formVisibleOnPage: false 
+    // });
   }
 
   handleChangingSelectedTicket = (id) => {
