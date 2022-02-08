@@ -23,13 +23,16 @@ export default class TicketControl extends React.Component {
         selectedTicket: null
       });
     } else {
-      // this.setState(prevState => ({
-      //   formVisibleOnPage: !prevState.formVisibleOnPage
-      // }));
+      const { dispatch } = this.props;
+      const action = {
+        type: 'TOGGLE_FORM'
+      }
+      dispatch(action);
     }
   }
 
   handleAddingNewTicketToList = (newTicket) => {
+    // we use dispatch to send an action to the store. dispatch() comes from redux. It takes two arguments, 1. is the current state 2. is the action to be performed on the stat (delete a ticket, show a form boolean, etc.)
     const { dispatch } = this.props;
     const { id, names, location, issue } = newTicket;
     const action = {
@@ -40,6 +43,10 @@ export default class TicketControl extends React.Component {
       issue
     }
     dispatch(action);
+    const action2 = {
+      type: 'TOGGLE_FORM'
+    }
+    dispatch(action2);
     // this.setState({
     //   formVisibleOnPage: false 
     // });
@@ -117,7 +124,7 @@ export default class TicketControl extends React.Component {
 
       buttonText="Return To List";
 
-    } else if (this.state.formVisibleOnPage) {
+    } else if (this.props.formVisibleOnPage) {
       currentlyVisibleState = 
         <NewTicketForm onNewTicketCreation={this.handleAddingNewTicketToList} />
 
